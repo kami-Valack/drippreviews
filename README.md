@@ -33,6 +33,8 @@ cp .env.example .env
 | `CURRENCY` | Moeda (preços na API vêm em centavos) |
 | `STORE_PRODUCT_URL` | URL da loja para compra (`{id}` = ID do produto) |
 | `REDIRECT_DELAY_SECONDS` | Segundos até redirect automático (padrão 5) |
+| `CRON_INTERVAL_MINUTES` | Ping à API a cada N minutos (padrão 90) |
+| `PING_ON_START` | `true` = primeiro ping ao arrancar o servidor |
 | `PORT` | Porta HTTP (padrão 3000) |
 
 ## Desenvolvimento
@@ -68,8 +70,11 @@ const shareUrl = `${previewBase}/p/${product.id}`;
 - [Twitter Card Validator](https://cards-dev.twitter.com/validator)
 - [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/)
 
+## Ping à API (cron integrado)
+
+Com `npm run start:dev` ou `npm run start:prod`, o servidor também faz pedidos à API a cada **90 min** (`CRON_INTERVAL_MINUTES`) para a manter ativa. Logs no console do Nest.
+
 ## Notas
 
 - Produtos são carregados por **ID** via `GET /api/products/{id}` (alinhado com a API).
 - Imagens da API usam `http://`; as meta tags usam `https://` para compatibilidade com WhatsApp/Facebook.
-"# drippreviews" 
