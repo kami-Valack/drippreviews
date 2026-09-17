@@ -33,10 +33,9 @@ export class SeoService {
     return template.replace(/\{id\}/g, String(id));
   }
 
-  formatPrice(cents: number): string {
-    const amount = Number(cents);
-    if (!Number.isFinite(amount)) return '—';
-    const value = amount / 100;
+  formatPrice(amount: number): string {
+    const value = Number(amount);
+    if (!Number.isFinite(value)) return '—';
     try {
       const formatted = new Intl.NumberFormat('pt-AO', {
         style: 'currency',
@@ -71,7 +70,7 @@ export class SeoService {
     const storeUrl = this.storeProductUrl(product.id);
     const redirectSeconds = this.redirectDelayMs / 1000;
     const image = this.secureImageUrl(product.primary_image);
-    const price = (product.final_price / 100).toFixed(2);
+    const price = product.final_price.toFixed(2);
     const hasDiscount =
       product.sale_price != null && product.sale_price < product.price;
     const originalPriceHtml = hasDiscount

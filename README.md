@@ -30,7 +30,7 @@ cp .env.example .env
 | `SITE_URL` | URL pública deste servidor (obrigatório em produção) |
 | `API_BASE_URL` | Base da API DRIP |
 | `STORE_NAME` | Nome na meta `og:site_name` |
-| `CURRENCY` | Moeda (preços na API vêm em centavos) |
+| `CURRENCY` | Moeda (preços na API vêm em unidades inteiras, por exemplo `19000` = 19.000,00 Kz) |
 | `STORE_PRODUCT_URL` | URL da loja para compra (`{id}` = ID do produto) |
 | `REDIRECT_DELAY_SECONDS` | Segundos até redirect automático (padrão 5) |
 | `CRON_INTERVAL_MINUTES` | Ping à API a cada N minutos (padrão 90) |
