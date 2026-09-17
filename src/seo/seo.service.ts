@@ -364,7 +364,7 @@ export class SeoService {
           <p class="price-current" itemprop="price">${this.escapeHtml(priceFormatted)}</p>
         </div>
 
-        <p class="description">${this.escapeHtml(product.description)}</p>
+        <p class="description">${this.escapeHtml(productDescription)}</p>
 
         <div class="cta-card">
           <p class="cta-text">
