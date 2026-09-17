@@ -60,9 +60,10 @@ export class SeoService {
   renderProductPage(product: Product): string {
     const priceFormatted = this.formatPrice(product.final_price);
     const title = `${product.name} — ${priceFormatted} | ${this.storeName}`;
-    const description = this.truncate(product.description, 120);
+    const productDescription = product.description ?? '';
+    const description = this.truncate(productDescription, 120);
     const ogDescription = this.truncate(
-      `${priceFormatted} · ${product.name} · ${this.storeName} — ${product.description}`,
+      `${priceFormatted} · ${product.name} · ${this.storeName} — ${productDescription}`,
       200,
     );
     const ogTitle = `${this.storeName} — ${product.name} — ${priceFormatted}`;
@@ -83,7 +84,7 @@ export class SeoService {
       '@context': 'https://schema.org',
       '@type': 'Product',
       name: product.name,
-      description: product.description,
+      description: productDescription,
       image: product.images.map((img) => this.secureImageUrl(img.url)),
       sku: product.sku,
       brand: { '@type': 'Brand', name: this.storeName },
@@ -507,7 +508,8 @@ Sitemap: ${this.siteUrl}/sitemap.xml
 </html>`;
   }
 
-  private truncate(text: string, max: number): string {
+  private truncate(text: string | null | undefined, max: number): string {
+    if (!text) return '';
     if (text.length <= max) return text;
     return text.slice(0, max - 3) + '...';
   }

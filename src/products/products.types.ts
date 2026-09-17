@@ -15,7 +15,7 @@ export interface Product {
   sku: string;
   name: string;
   slug: string;
-  description: string;
+  description: string | null;
   price: number;
   sale_price: number | null;
   final_price: number;
